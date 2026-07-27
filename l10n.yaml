@@ -1,0 +1,11 @@
+arb-dir: lib/core/l10n
+template-arb-file: app_tg.arb
+output-localization-file: app_localizations.dart
+output-class: AppLocalizations
+nullable-getter: false
+# Муҳим: бе ин сатр, Flutter файли AppLocalizations-ро дар як
+# "synthetic package" пинҳонӣ (.dart_tool/) месозад, на дар lib/ —
+# ва import-и мустақими 'core/l10n/app_localizations.dart' дар
+# main.dart кор намекунад. Ин сатр маҷбур мекунад, ки файл мустақим
+# дар lib/core/l10n/ навишта шавад.
+synthetic-package: false

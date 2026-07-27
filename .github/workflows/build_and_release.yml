@@ -1,0 +1,150 @@
+name: Build & Release Pythonchi
+
+# ЧӢ ВАҚТ ИН WORKFLOW КОР МЕКУНАД:
+# - Ҳар push ба branch-и "main" — APK ва AAB месозад ва Release эҷод мекунад.
+# - Инчунин метавонед онро дастӣ аз таби "Actions" дар GitHub оғоз кунед
+#   (тугмаи "Run workflow").
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: {}
+
+# Иҷозати навиштан лозим аст, то workflow тавонад Release эҷод кунад.
+permissions:
+  contents: write
+
+env:
+  FLUTTER_VERSION: '3.24.5'
+  JAVA_VERSION: '17'
+
+jobs:
+  build:
+    name: Build APK + AAB
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1) Гирифтани коди лоиҳа аз репозиторӣ
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2) Насби Java (барои Android Gradle зарур аст)
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: ${{ env.JAVA_VERSION }}
+
+      # 3) Насби Flutter SDK
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: 'stable'
+          cache: true
+
+      # 4) Санҷиши насби Flutter (барои debug дар логҳо фоиданок аст)
+      - name: Flutter doctor
+        run: flutter doctor -v
+
+      # 5) Насби dependency-ҳо
+      - name: Install dependencies
+        run: flutter pub get
+
+      # 5.1) Тавлиди файлҳои локализатсия (AppLocalizations аз ARB файлҳо).
+      #      Одатан ин худкор ҳангоми pub get иҷро мешавад (generate: true
+      #      дар pubspec.yaml), аммо дар CI баъзан лозим меояд бевосита
+      #      даъват шавад, то файли app_localizations.dart сохта шавад.
+      - name: Generate localizations
+        run: flutter gen-l10n
+
+      # 6) Тавлиди файлҳои коди автоматӣ (Drift, Riverpod, Freezed)
+      #    Ин қадам файлҳои *.g.dart -ро месозад, ки дар Git захира намешаванд.
+      - name: Run build_runner (code generation)
+        run: dart run build_runner build --delete-conflicting-outputs
+
+      # 7) Санҷиши сифати код (агар хатогӣ ёфт шавад, workflow қатъ намешавад —
+      #    танҳо огоҳӣ медиҳад, то нашри аввалини шумо аз сабаби огоҳиҳои
+      #    хурди lint қатъ нашавад)
+      - name: Analyze code
+        run: flutter analyze || true
+        continue-on-error: true
+
+      # 8) Сохтани версияи рақами build аз рӯи шумораи workflow run
+      #    (то ҳар push версияи нав дошта бошад)
+      - name: Compute build number
+        id: version
+        run: |
+          BUILD_NUMBER=${{ github.run_number }}
+          VERSION_NAME="1.0.${BUILD_NUMBER}"
+          echo "build_number=$BUILD_NUMBER" >> "$GITHUB_OUTPUT"
+          echo "version_name=$VERSION_NAME" >> "$GITHUB_OUTPUT"
+
+      # 9) Сохтани Release Keystore (агар GitHub Secrets танзим шуда бошанд).
+      #    Агар Secrets мавҷуд набошанд, ин қадам гузашта мешавад ва APK бо
+      #    debug-key имзо мешавад (барои санҷиш кофист, аммо барои нашр дар
+      #    Play Store шумо бояд Secrets-ро танзим кунед — ниг. README).
+      - name: Decode release keystore (optional)
+        if: ${{ env.ANDROID_KEYSTORE_BASE64 != '' }}
+        env:
+          ANDROID_KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+        run: |
+          echo "$ANDROID_KEYSTORE_BASE64" | base64 --decode > android/app/release-key.jks
+          cat > android/key.properties << EOF
+          storePassword=${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          keyPassword=${{ secrets.ANDROID_KEY_PASSWORD }}
+          keyAlias=${{ secrets.ANDROID_KEY_ALIAS }}
+          storeFile=release-key.jks
+          EOF
+
+      # 10) Сохтани APK (барои насби бевосита ба телефон)
+      - name: Build APK (release)
+        run: >
+          flutter build apk --release
+          --build-number=${{ steps.version.outputs.build_number }}
+          --build-name=${{ steps.version.outputs.version_name }}
+
+      # 11) Сохтани Android App Bundle (барои Google Play)
+      - name: Build App Bundle (release)
+        run: >
+          flutter build appbundle --release
+          --build-number=${{ steps.version.outputs.build_number }}
+          --build-name=${{ steps.version.outputs.version_name }}
+
+      # 12) Бор кардани файлҳо ҳамчун artifact-и workflow (боргирӣ аз "Actions" tab)
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: pythonchi-release-apk
+          path: build/app/outputs/flutter-apk/app-release.apk
+
+      - name: Upload AAB artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: pythonchi-release-aab
+          path: build/app/outputs/bundle/release/app-release.aab
+
+      # 13) Эҷоди GitHub Release ва боркунии худкори APK/AAB ба он
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ steps.version.outputs.version_name }}
+          name: Pythonchi v${{ steps.version.outputs.version_name }}
+          body: |
+            ## Pythonchi — Нашри худкор
+
+            Ин нашр аз ҷониби GitHub Actions ба таври худкор сохта шудааст.
+
+            ### Файлҳо:
+            - **app-release.apk** — барои насби бевосита ба телефони Android
+            - **app-release.aab** — барои боркунӣ ба Google Play Console
+
+            **Build:** ${{ github.run_number }}
+            **Commit:** ${{ github.sha }}
+          files: |
+            build/app/outputs/flutter-apk/app-release.apk
+            build/app/outputs/bundle/release/app-release.aab
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

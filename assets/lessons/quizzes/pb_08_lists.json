@@ -1,0 +1,67 @@
+{
+  "id": "quiz_python_basics",
+  "lessonId": "pb_08_lists",
+  "passThresholdPercent": 70,
+  "questions": [
+    {
+      "id": "q1",
+      "type": "singleChoice",
+      "questionTg": "Кадоме аз инҳо тарзи дурусти сохтани тағйирёбанда дар Python аст?",
+      "questionRu": "Какой из вариантов правильно создаёт переменную в Python?",
+      "questionEn": "Which of the following correctly creates a variable in Python?",
+      "options": ["let x = 5", "x := 5", "x = 5", "var x = 5"],
+      "correctOptionIndexes": [2],
+      "explanationTg": "Дар Python тағйирёбанда бо аломати як баробарӣ (=) сохта мешавад, бе калимаи калидии иловагӣ.",
+      "explanationRu": "В Python переменная создаётся с помощью одного знака равенства (=), без дополнительного ключевого слова.",
+      "explanationEn": "In Python, a variable is created with a single equals sign (=), with no extra keyword needed."
+    },
+    {
+      "id": "q2",
+      "type": "singleChoice",
+      "questionTg": "Натиҷаи 15 % 4 чист?",
+      "questionRu": "Каков результат 15 % 4?",
+      "questionEn": "What is the result of 15 % 4?",
+      "options": ["3", "3.75", "1", "4"],
+      "correctOptionIndexes": [2],
+      "explanationTg": "Аломати % боқимондаи тақсимро медиҳад: 15 ÷ 4 = 3 боқимонда 3... не, дуруст: 4×3=12, 15-12=3. Пас ҷавоб 3 аст.",
+      "explanationRu": "Оператор % возвращает остаток от деления: 4×3=12, 15-12=3. Значит ответ 3.",
+      "explanationEn": "The % operator returns the remainder of division: 4×3=12, 15-12=3, so the answer is 3."
+    },
+    {
+      "id": "q3",
+      "type": "trueFalse",
+      "questionTg": "Дар Python, индекси аввалин унсури рӯйхат 1 аст.",
+      "questionRu": "В Python индекс первого элемента списка равен 1.",
+      "questionEn": "In Python, the index of the first list element is 1.",
+      "options": ["Дуруст / Верно / True", "Нодуруст / Неверно / False"],
+      "correctOptionIndexes": [1],
+      "explanationTg": "Индексатсия дар Python аз 0 сар мешавад, на аз 1.",
+      "explanationRu": "Индексация в Python начинается с 0, а не с 1.",
+      "explanationEn": "Indexing in Python starts at 0, not 1."
+    },
+    {
+      "id": "q4",
+      "type": "singleChoice",
+      "questionTg": "Кадом калимаи калидӣ барои сохтани функсия истифода мешавад?",
+      "questionRu": "Какое ключевое слово используется для создания функции?",
+      "questionEn": "Which keyword is used to define a function?",
+      "options": ["function", "def", "func", "lambda"],
+      "correctOptionIndexes": [1],
+      "explanationTg": "Функсия дар Python бо калимаи калидии def сохта мешавад.",
+      "explanationRu": "Функция в Python создаётся с помощью ключевого слова def.",
+      "explanationEn": "Functions in Python are defined using the def keyword."
+    },
+    {
+      "id": "q5",
+      "type": "singleChoice",
+      "questionTg": "Кадом метод унсури нав ба охири рӯйхат илова мекунад?",
+      "questionRu": "Какой метод добавляет новый элемент в конец списка?",
+      "questionEn": "Which method adds a new element to the end of a list?",
+      "options": [".add()", ".append()", ".push()", ".insert()"],
+      "correctOptionIndexes": [1],
+      "explanationTg": "Методи .append() унсури навро ба охири рӯйхат илова мекунад.",
+      "explanationRu": "Метод .append() добавляет новый элемент в конец списка.",
+      "explanationEn": ".append() adds a new element to the end of a list."
+    }
+  ]
+}

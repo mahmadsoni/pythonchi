@@ -1,0 +1,41 @@
+[
+  {
+    "id": "python_basics",
+    "orderIndex": 0,
+    "titleTg": "Асосҳои Python",
+    "titleRu": "Основы Python",
+    "titleEn": "Python Basics",
+    "iconName": "code",
+    "lessonIds": [
+      "pb_01_intro", "pb_02_variables", "pb_03_input_output", "pb_04_operators",
+      "pb_05_conditions", "pb_06_loops", "pb_07_functions", "pb_08_lists"
+    ]
+  },
+  {
+    "id": "python_data_structures",
+    "orderIndex": 1,
+    "titleTg": "Сохторҳои маълумот",
+    "titleRu": "Структуры данных",
+    "titleEn": "Data Structures",
+    "iconName": "data_array",
+    "lessonIds": ["ds_01_tuples", "ds_02_dictionaries", "ds_03_sets", "ds_04_files"]
+  },
+  {
+    "id": "python_oop",
+    "orderIndex": 2,
+    "titleTg": "Барномасозии объектӣ (OOP)",
+    "titleRu": "ООП",
+    "titleEn": "Object-Oriented Programming",
+    "iconName": "widgets",
+    "lessonIds": ["oop_01_classes", "oop_02_inheritance", "oop_03_modules"]
+  },
+  {
+    "id": "python_advanced",
+    "orderIndex": 3,
+    "titleTg": "Сатҳи пешрафта",
+    "titleRu": "Продвинутый уровень",
+    "titleEn": "Advanced Python",
+    "iconName": "rocket_launch",
+    "lessonIds": ["adv_01_apis", "adv_02_databases", "adv_03_automation", "adv_04_web", "adv_05_bots", "adv_06_data_analysis", "adv_07_ai_fundamentals", "adv_08_final_project"]
+  }
+]

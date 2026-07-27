@@ -1,0 +1,214 @@
+[
+  {
+    "id": "pb_01_intro",
+    "moduleId": "python_basics",
+    "orderIndex": 0,
+    "titleTg": "Шинос бо Python",
+    "titleRu": "Знакомство с Python",
+    "titleEn": "Introduction to Python",
+    "difficulty": "beginner",
+    "xpReward": 10,
+    "estimatedMinutes": 5,
+    "content": [
+      {"type": "text", "content": "Python яке аз забонҳои барномасозии соддатарин ва пуриқтидортарин дар ҷаҳон аст. Он барои сохтани сайтҳо, барномаҳои сунъии зеҳн, таҳлили маълумот ва автоматикунонӣ истифода мешавад."},
+      {"type": "text", "content": "Биёед аввалин барномаи худро нависем — анъанаи ҳар барномасоз аз ин ҷумла оғоз мешавад:"},
+      {"type": "code", "language": "python", "content": "print(\"Салом, Pythonchi!\")"},
+      {"type": "tip", "content": "Функсияи print() ҳар чизеро, ки дар дохили қавс гузоред, дар экран нишон медиҳад."},
+      {"type": "text", "content": "Ҳар сатри код дар Python ба таври пайдарпай иҷро мешавад — аз боло ба поён, бидуни нуқтавергул (;) дар охири сатр."}
+    ],
+    "challenges": [
+      {
+        "id": "pb_01_ch1",
+        "prompt": "Матни \"Ман Python меомӯзам\" -ро бо ёрии print() чоп кунед.",
+        "starterCode": "# Коди худро дар ин ҷо нависед\n",
+        "expectedOutputContains": "Ман Python меомӯзам",
+        "hint": "Истифода баред: print(\"матни шумо\")",
+        "solution": "print(\"Ман Python меомӯзам\")"
+      }
+    ]
+  },
+  {
+    "id": "pb_02_variables",
+    "moduleId": "python_basics",
+    "orderIndex": 1,
+    "titleTg": "Тағйирёбандаҳо (Variables)",
+    "titleRu": "Переменные",
+    "titleEn": "Variables",
+    "difficulty": "beginner",
+    "xpReward": 10,
+    "estimatedMinutes": 6,
+    "content": [
+      {"type": "text", "content": "Тағйирёбанда (variable) ҷойест барои нигоҳ доштани маълумот бо ном. Дар Python барои сохтани тағйирёбанда шумо танҳо аломати баробарӣ (=) истифода мебаред."},
+      {"type": "code", "language": "python", "content": "name = \"Аҳмад\"\nage = 20\nheight = 1.75\nprint(name, age, height)"},
+      {"type": "text", "content": "Python худ навъи маълумотро (str, int, float) муайян мекунад — шумо лозим намеояд онро пешакӣ нависед."},
+      {"type": "warning", "content": "Номи тағйирёбанда наметавонад бо рақам сар шавад ва наметавонад фазо (space) дошта бошад. Ба ҷои он аз underscore (_) истифода баред: user_name"}
+    ],
+    "challenges": [
+      {
+        "id": "pb_02_ch1",
+        "prompt": "Тағйирёбандаи 'city' созед, ки арзиши он номи шаҳри шумо бошад, ва онро чоп кунед.",
+        "starterCode": "# city = ...\n",
+        "expectedOutputContains": "",
+        "hint": "city = \"Душанбе\"\nprint(city)",
+        "solution": "city = \"Душанбе\"\nprint(city)"
+      }
+    ]
+  },
+  {
+    "id": "pb_03_input_output",
+    "moduleId": "python_basics",
+    "orderIndex": 2,
+    "titleTg": "Вуруд ва баромад (Input/Output)",
+    "titleRu": "Ввод и вывод",
+    "titleEn": "Input & Output",
+    "difficulty": "beginner",
+    "xpReward": 10,
+    "estimatedMinutes": 6,
+    "content": [
+      {"type": "text", "content": "Барои гирифтани маълумот аз корбар, функсияи input() истифода мешавад. Он ҳамеша натиҷаро ҳамчун матн (string) бармегардонад."},
+      {"type": "code", "language": "python", "content": "name = input(\"Номи шумо чист? \")\nprint(\"Хуш омадед, \" + name + \"!\")"},
+      {"type": "tip", "content": "Агар шумо рақам гиред, бояд онро табдил диҳед: int(input(...)) барои адади бутун ё float(input(...)) барои адади касрӣ."}
+    ],
+    "challenges": [
+      {
+        "id": "pb_03_ch1",
+        "prompt": "Аз корбар синнашро (input) гиред ва паёми \"Синни шумо: X\" -ро чоп кунед.",
+        "starterCode": "age = input(\"Синни шумо чанд аст? \")\n",
+        "expectedOutputContains": "Синни шумо",
+        "hint": "print(\"Синни шумо: \" + age)",
+        "solution": "age = input(\"Синни шумо чанд аст? \")\nprint(\"Синни шумо: \" + age)"
+      }
+    ]
+  },
+  {
+    "id": "pb_04_operators",
+    "moduleId": "python_basics",
+    "orderIndex": 3,
+    "titleTg": "Операторҳо",
+    "titleRu": "Операторы",
+    "titleEn": "Operators",
+    "difficulty": "beginner",
+    "xpReward": 12,
+    "estimatedMinutes": 7,
+    "content": [
+      {"type": "text", "content": "Операторҳои арифметикӣ барои ҳисобкунӣ истифода мешаванд: + (ҷамъ), - (тарҳ), * (зарб), / (тақсим), ** (дараҷа), % (боқимонда)."},
+      {"type": "code", "language": "python", "content": "a = 10\nb = 3\nprint(a + b)   # 13\nprint(a % b)   # 1 (боқимонда)\nprint(a ** 2)  # 100"},
+      {"type": "text", "content": "Операторҳои муқоисавӣ (==, !=, >, <, >=, <=) натиҷаи True ё False медиҳанд."}
+    ],
+    "challenges": [
+      {
+        "id": "pb_04_ch1",
+        "prompt": "Ду адади 15 ва 4-ро тақсим кунед ва боқимондаи онро (%) чоп кунед.",
+        "starterCode": "a = 15\nb = 4\n",
+        "expectedOutputContains": "3",
+        "hint": "print(a % b)",
+        "solution": "a = 15\nb = 4\nprint(a % b)"
+      }
+    ]
+  },
+  {
+    "id": "pb_05_conditions",
+    "moduleId": "python_basics",
+    "orderIndex": 4,
+    "titleTg": "Шартҳо (if / else)",
+    "titleRu": "Условия",
+    "titleEn": "Conditions",
+    "difficulty": "beginner",
+    "xpReward": 12,
+    "estimatedMinutes": 8,
+    "content": [
+      {"type": "text", "content": "Оператори if имкон медиҳад, ки код танҳо ҳангоми иҷрои як шарт кор кунад."},
+      {"type": "code", "language": "python", "content": "age = 18\nif age >= 18:\n    print(\"Шумо калонсол ҳастед\")\nelif age >= 13:\n    print(\"Шумо наврас ҳастед\")\nelse:\n    print(\"Шумо кӯдак ҳастед\")"},
+      {"type": "warning", "content": "Дар Python қавс лозим нест, аммо дукогазӣ (indentation — 4 фазо) ҳатмист! Он блоки кодро муайян мекунад."}
+    ],
+    "challenges": [
+      {
+        "id": "pb_05_ch1",
+        "prompt": "Тағйирёбандаи 'score = 85' созед. Агар score >= 60 бошад, чоп кунед \"Гузашт\", вагарна \"Нагузашт\".",
+        "starterCode": "score = 85\n",
+        "expectedOutputContains": "Гузашт",
+        "hint": "if score >= 60:\n    print(\"Гузашт\")\nelse:\n    print(\"Нагузашт\")",
+        "solution": "score = 85\nif score >= 60:\n    print(\"Гузашт\")\nelse:\n    print(\"Нагузашт\")"
+      }
+    ]
+  },
+  {
+    "id": "pb_06_loops",
+    "moduleId": "python_basics",
+    "orderIndex": 5,
+    "titleTg": "Даврҳо (for / while)",
+    "titleRu": "Циклы",
+    "titleEn": "Loops",
+    "difficulty": "beginner",
+    "xpReward": 14,
+    "estimatedMinutes": 9,
+    "content": [
+      {"type": "text", "content": "Давраи for барои такрор кардани амал бар рӯи маҷмӯи маълумот (масалан range) истифода мешавад."},
+      {"type": "code", "language": "python", "content": "for i in range(5):\n    print(\"Такрори\", i)"},
+      {"type": "text", "content": "Давраи while то даме, ки шарт дуруст (True) бошад, идома меёбад."},
+      {"type": "code", "language": "python", "content": "count = 0\nwhile count < 3:\n    print(count)\n    count += 1"}
+    ],
+    "challenges": [
+      {
+        "id": "pb_06_ch1",
+        "prompt": "Бо ёрии for, рақамҳои аз 1 то 5-ро чоп кунед.",
+        "starterCode": "",
+        "expectedOutputContains": "5",
+        "hint": "for i in range(1, 6):\n    print(i)",
+        "solution": "for i in range(1, 6):\n    print(i)"
+      }
+    ]
+  },
+  {
+    "id": "pb_07_functions",
+    "moduleId": "python_basics",
+    "orderIndex": 6,
+    "titleTg": "Функсияҳо",
+    "titleRu": "Функции",
+    "titleEn": "Functions",
+    "difficulty": "beginner",
+    "xpReward": 15,
+    "estimatedMinutes": 10,
+    "content": [
+      {"type": "text", "content": "Функсия блоки коде мебошад, ки метавонед онро борҳо истифода баред. Он бо калимаи def сохта мешавад."},
+      {"type": "code", "language": "python", "content": "def greet(name):\n    return \"Салом, \" + name + \"!\"\n\nprint(greet(\"Мадина\"))"},
+      {"type": "tip", "content": "Калимаи return натиҷаро аз функсия бармегардонад. Функсияе, ки return надорад, натиҷаи None медиҳад."}
+    ],
+    "challenges": [
+      {
+        "id": "pb_07_ch1",
+        "prompt": "Функсияи square(x) созед, ки квадрати рақамро бармегардонад, ва square(6)-ро чоп кунед.",
+        "starterCode": "def square(x):\n    # коди худро нависед\n    pass\n\n",
+        "expectedOutputContains": "36",
+        "hint": "return x * x",
+        "solution": "def square(x):\n    return x * x\n\nprint(square(6))"
+      }
+    ]
+  },
+  {
+    "id": "pb_08_lists",
+    "moduleId": "python_basics",
+    "orderIndex": 7,
+    "titleTg": "Рӯйхатҳо (Lists)",
+    "titleRu": "Списки",
+    "titleEn": "Lists",
+    "difficulty": "beginner",
+    "xpReward": 15,
+    "estimatedMinutes": 9,
+    "content": [
+      {"type": "text", "content": "List маҷмӯи тартибдодашудаи маълумот аст, ки метавонад тағйир ёбад (mutable). Он бо квадратӣ қавс сохта мешавад."},
+      {"type": "code", "language": "python", "content": "fruits = [\"себ\", \"нок\", \"ангур\"]\nfruits.append(\"мандарин\")\nprint(fruits[0])   # себ\nprint(len(fruits)) # 4"},
+      {"type": "text", "content": "Индексатсия аз 0 сар мешавад. fruits[0] аввалин унсур аст, fruits[-1] охирин унсур аст."}
+    ],
+    "challenges": [
+      {
+        "id": "pb_08_ch1",
+        "prompt": "Рӯйхати numbers = [1, 2, 3]-ро созед, рақами 4-ро илова кунед ва тамоми рӯйхатро чоп кунед.",
+        "starterCode": "numbers = [1, 2, 3]\n",
+        "expectedOutputContains": "4",
+        "hint": "numbers.append(4)\nprint(numbers)",
+        "solution": "numbers = [1, 2, 3]\nnumbers.append(4)\nprint(numbers)"
+      }
+    ]
+  }
+]
